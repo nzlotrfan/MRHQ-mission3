@@ -1,0 +1,38 @@
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.search-results-container {
+  display: flex;
+  justify-content: center;
+}
+
+#search-results {
+  width: 700px;
+  height: auto;
+  padding: 20px;
+  padding-top: 5px;
+}
+
+.search-results-border {
+  border: solid grey 2px;
+  border-radius: 10px;
+}
+.results-title {
+  font-weight: bold;
+}
+
+.search-query {
+  margin-bottom: 10px;
+}
+.logo {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  width: 500px;
+}
