@@ -14,7 +14,7 @@ function Search() {
   const handleSubmit = () => {
     // Remove Special Characters function
     const newMakeStringOnly = (string) => {
-      let temp = string.replace(/[!,?,-,;,%]/g, " ");
+      let temp = string.replace(/[!,?,\-,;,%]/g, " ");
       let formattedString = temp.replace(/\s+/g, " ").trim();
       setDisplayedFormattedSearchString(
         `You searched for: "${formattedString}"`

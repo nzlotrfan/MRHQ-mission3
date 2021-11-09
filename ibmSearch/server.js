@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config();
 const DiscoveryV1 = require("ibm-watson/discovery/v1");
 const { IamAuthenticator } = require("ibm-watson/auth");
 app.use(express.urlencoded({ extended: true })); // we're telling the server to expect data inputed from an HTML form. But if we're sending the data via JSON then we don't actually need this line
@@ -11,7 +12,7 @@ app.use(cors()); // tells the server to accept incoming data from other location
 const discovery = new DiscoveryV1({
   version: "2021-11-07",
   authenticator: new IamAuthenticator({
-    apikey: "SNA6_eabsAwkXFlvf3Vf1jR--eKPUxvTta-wrDnUneGs",
+    apikey: process.env.APIK,
   }),
   serviceUrl: "https://api.eu-gb.discovery.watson.cloud.ibm.com",
 });
@@ -24,8 +25,8 @@ app.post("/search", function (req, res) {
   const userQuery = req.body.searchString; // TEST Search parameters
 
   const queryParams = {
-    environmentId: "d092ad96-249e-43af-a81d-8eef1a4aa9ab",
-    collectionId: "18126044-5588-4be0-bf30-2fcbc87c45f3",
+    environmentId: process.env.ENVIROID,
+    collectionId: process.env.COLLECTID,
     query: userQuery,
   };
 
