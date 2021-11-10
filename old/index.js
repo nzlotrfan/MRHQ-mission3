@@ -14,7 +14,7 @@ module.exports = makeStringOnly;
 // Bonus functionality: If string has a special characted at the beginning or end of the string,
 // or if there is a special character in the middle surrounded by a space, then remove special character only and do not put space.
 const newMakeStringOnly = (string) => {
-  let temp = string.replace(/[!,?,-,;,%]/g, " ");
+  let temp = string.replace(/[!,?,\-,;,%]/g, " ");
   let newFormattedString = temp.replace(/\s+/g, " ").trim();
   return newFormattedString;
 };
