@@ -12,23 +12,24 @@ function Search() {
   const [resultsText, setResultsText] = useState("");
 
   const handleSubmit = () => {
-    // Remove Special Characters function
-    const newMakeStringOnly = (string) => {
+    // Function that makes a dirty input string neat.
+    const makeStringNeat = (string) => {
       let temp = string.replace(/[!,?,\-,;,%]/g, " ");
       let formattedString = temp.replace(/\s+/g, " ").trim();
-      setDisplayedFormattedSearchString(
-        `You searched for: "${formattedString}"`
-      );
       return formattedString;
     };
+    const formattedString = makeStringNeat(searchString);
+    setDisplayedFormattedSearchString(`You searched for: "${formattedString}"`);
 
+    // This function adds a css class that displays the border around the search results
     function addClass() {
       document
         .getElementById("search-results")
         .classList.add("search-results-border");
     }
     addClass();
-    const formattedString = newMakeStringOnly(searchString);
+
+    // The Axios module which posts the users string to the backend before receiving a response
     axios
       .post("http://localhost:4000/search", {
         searchString: formattedString,
@@ -53,7 +54,6 @@ function Search() {
   return (
     <div className="App">
       <img className="logo" src={turners} alt="logo" />
-      {/* <h1>Turners Search Page</h1> */}
       <div className="search-box">
         <TextField
           variant="outlined"
