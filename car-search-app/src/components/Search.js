@@ -8,10 +8,11 @@ function Search() {
   const [searchString, setSearchString] = useState("");
   const [displayedFormattedSearchString, setDisplayedFormattedSearchString] =
     useState("");
-  const [resultsTitle, setResultsTitle] = useState("");
-  const [resultsText, setResultsText] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [noResults, setNoResults] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault(); // fixes the submit refresh issue
     // Function that makes a dirty input string neat.
     const makeStringNeat = (string) => {
       let temp = string.replace(/[!,?,\-,;,%]/g, " ");
@@ -37,43 +38,53 @@ function Search() {
       .then((response) => {
         if (response.status === 200) {
           setSearchString("");
-          const rawData = response.data;
-          const question = rawData.result.results[0].question;
-          const answer = rawData.result.results[0].text;
-          setResultsTitle(question);
-          setResultsText(answer);
-          console.log(rawData);
+          const rawData = response.data.result; // an array
+          const rawDataFinal = response.data.result.results; // an array
+          setSearchResults(rawDataFinal);
+          rawData.matching_results
+            ? setNoResults("")
+            : setNoResults("no results buddy");
         }
       })
       .catch(() => {
         setSearchString("");
-        setResultsTitle("");
       });
   };
 
+  // console.log(searchResults);
   return (
     <div className="App">
       <img className="logo" src={turners} alt="logo" />
-      <div className="search-box">
-        <TextField
-          variant="outlined"
-          size="small"
-          type="text"
-          placeholder="Search me"
-          value={searchString}
-          onChange={(e) => setSearchString(e.target.value)}
-        />
-        <div className="btn">
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
+      <form onSubmit={handleSubmit}>
+        <div className="search-box">
+          <TextField
+            variant="outlined"
+            size="small"
+            type="text"
+            placeholder="Search me"
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
+          />
+          <div className="btn">
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </div>
         </div>
-      </div>
-      <div className="search-results-container">
-        <div id="search-results">
-          <div className="search-query">{displayedFormattedSearchString}</div>
-          <div className="results-title">{resultsTitle}</div>
-          <div className="results-text">{resultsText}</div>
+      </form>
+      <div>
+        <div className="search-results-container">
+          <div id="search-results">
+            <div className="search-query">{displayedFormattedSearchString}</div>
+
+            {noResults}
+            {searchResults.map((result, i) => (
+              <div key={i}>
+                <h2 className="results-title"> {result.question}</h2>
+                <p className="results-text">{result.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ app.post("/search", function (req, res) {
   discovery
     .query(queryParams)
     .then((queryResponse) => {
-      // console.log(JSON.stringify(queryResponse, null, 2));
+      console.log(JSON.stringify(queryResponse, null, 2));
       const searchRes = JSON.stringify(queryResponse, null, 2);
       res.status(200).send(searchRes);
     })
