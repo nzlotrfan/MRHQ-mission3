@@ -36,3 +36,21 @@
   margin-bottom: 20px;
   width: 500px;
 }
+
+.slideUp {
+  animation-duration: 3s;
+  animation-name: slideup;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideup {
+  from {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  to {
+    margin-top: -5%;
+    width: 100%;
+  }
+}

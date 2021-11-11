@@ -27,6 +27,7 @@ function Search() {
       document
         .getElementById("search-results")
         .classList.add("search-results-border");
+      document.getElementById("mainApp").classList.add("slideUp");
     }
     addClass();
 
@@ -53,7 +54,7 @@ function Search() {
 
   // console.log(searchResults);
   return (
-    <div className="App">
+    <div id="mainApp" className="App">
       <img className="logo" src={turners} alt="logo" />
       <form onSubmit={handleSubmit}>
         <div className="search-box">
