@@ -28,7 +28,8 @@ app.get("/search", (req, res) => {
     environmentId: process.env.ENVIROID,
     collectionId: process.env.COLLECTID,
     query: userQuery,
-    count: 5,
+    count: 2,
+    passagesCount: 2,
   };
 
   discovery
