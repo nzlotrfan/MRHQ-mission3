@@ -9,6 +9,7 @@ function Search() {
   const [displayedFormattedSearchString, setDisplayedFormattedSearchString] =
     useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [searchResultsTEST, setSearchResultsTEST] = useState([]);
   const [noResults, setNoResults] = useState("");
 
   const handleSubmit = (event) => {
@@ -44,6 +45,7 @@ function Search() {
           const rawData = response.data.result; // an array
           const rawDataFinal = response.data.result.results; // an array
           setSearchResults(rawDataFinal);
+          setSearchResultsTEST(rawData);
           rawData.matching_results
             ? setNoResults("")
             : setNoResults("no results buddy");
@@ -53,8 +55,15 @@ function Search() {
         setSearchString("");
       });
   };
+  // Trying to get the Passage_Text field to work with my map but failing
+  // const testArr = [];
+  // for (const out of Object.entries(searchResultsTEST)) {
+  //   testArr.push(out);
+  //   // console.log(results);
+  // }
 
-  // console.log(searchResults);
+  // console.log(testArr);
+  // console.log(searchResultsTEST);
   return (
     <div id="mainApp" className="App">
       <img className="logo" src={turners} alt="logo" />
@@ -81,6 +90,7 @@ function Search() {
             <div className="search-query">{displayedFormattedSearchString}</div>
 
             {noResults}
+
             {searchResults.map((result, i) => (
               <div key={i}>
                 <h2 className="results-title">
