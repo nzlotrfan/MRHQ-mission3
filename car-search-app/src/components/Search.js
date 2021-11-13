@@ -83,8 +83,17 @@ function Search() {
             {noResults}
             {searchResults.map((result, i) => (
               <div key={i}>
-                <h2 className="results-title"> {result.question}</h2>
-                <p className="results-text">{result.text}</p>
+                <h2 className="results-title">
+                  {result.extracted_metadata.title}
+                </h2>
+                <p className="results-text">
+                  {result.text.slice(0, 397).padEnd(400, "...")}
+                </p>
+                <p>
+                  <a href={result.metadata.source.url}>
+                    {result.metadata.source.url}
+                  </a>
+                </p>
               </div>
             ))}
           </div>

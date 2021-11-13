@@ -28,16 +28,13 @@ app.get("/search", (req, res) => {
     environmentId: process.env.ENVIROID,
     collectionId: process.env.COLLECTID,
     query: userQuery,
-    count: 5, // DOESN'T WORK FOR WEB QUERIES
-    //passagesCount: 1, // THIS DOESN'T WORK FOR WEB QUERIES
+    count: 5,
   };
 
   discovery
     .query(queryParams)
     .then((queryResponse) => {
       console.log(JSON.stringify(queryResponse, null, 2));
-      const searchRes = JSON.stringify(queryResponse, null, 2);
-      // const searchRes = queryResponse;
       res.status(200).send(queryResponse);
     })
     .catch((err) => console.log(err));
