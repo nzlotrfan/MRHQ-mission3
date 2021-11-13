@@ -2,32 +2,34 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const DiscoveryV1 = require("ibm-watson/discovery/v1");
-const { IamAuthenticator } = require("ibm-watson/auth");
+
+// for Express
 app.use(express.urlencoded({ extended: true })); // we're telling the server to expect data inputed from an HTML form. But if we're sending the data via JSON then we don't actually need this line
 app.use(express.json()); // tells the server to accept JSON data
 app.use(cors()); // tells the server to accept incoming data from other locations
 
-// DISCOVERY API START
+// IBM Discovery
+const DiscoveryV1 = require("ibm-watson/discovery/v1");
+const { IamAuthenticator } = require("ibm-watson/auth");
+
 const discovery = new DiscoveryV1({
-  version: "2021-11-07",
+  version: "2019-04-30",
   authenticator: new IamAuthenticator({
     apikey: process.env.APIK,
   }),
   serviceUrl: "https://api.eu-gb.discovery.watson.cloud.ibm.com",
 });
 
-// when you want to access specific information inside of the request. All of the data that you send from the frontend ..
-// .. will be accessible via req.body
-app.post("/search", function (req, res) {
-  console.log(req.body);
-  // Watson Query data START
-  const userQuery = req.body.searchString; // TEST Search parameters
-
+// Server endpoints
+app.get("/search", (req, res) => {
+  console.log(`The search term was: "${req.query.searchString}"`);
+  const userQuery = req.query.searchString; //  Search parameters
   const queryParams = {
     environmentId: process.env.ENVIROID,
     collectionId: process.env.COLLECTID,
     query: userQuery,
+    count: 5, // DOESN'T WORK FOR WEB QUERIES
+    //passagesCount: 1, // THIS DOESN'T WORK FOR WEB QUERIES
   };
 
   discovery
@@ -35,12 +37,15 @@ app.post("/search", function (req, res) {
     .then((queryResponse) => {
       console.log(JSON.stringify(queryResponse, null, 2));
       const searchRes = JSON.stringify(queryResponse, null, 2);
-      res.status(200).send(searchRes);
+      // const searchRes = queryResponse;
+      res.status(200).send(queryResponse);
     })
     .catch((err) => console.log(err));
 
   // Watson Query data END
 });
+
+// ALTERNATIVE SETUP
 
 // FAILED 404 page
 // app.get("*", function (req, res) {

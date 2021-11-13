@@ -33,8 +33,10 @@ function Search() {
 
     // The Axios module which posts the users string to the backend before receiving a response
     axios
-      .post("http://localhost:4000/search", {
-        searchString: formattedString,
+      .get("http://localhost:4000/search", {
+        params: {
+          searchString: formattedString,
+        },
       })
       .then((response) => {
         if (response.status === 200) {
