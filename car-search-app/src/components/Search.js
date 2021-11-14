@@ -9,7 +9,7 @@ function Search() {
   const [displayedFormattedSearchString, setDisplayedFormattedSearchString] =
     useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [searchResultsTEST, setSearchResultsTEST] = useState([]);
+  // const [searchResultsTEST, setSearchResultsTEST] = useState([]);
   const [noResults, setNoResults] = useState("");
 
   const handleSubmit = (event) => {
@@ -45,7 +45,7 @@ function Search() {
           const rawData = response.data.result; // an array
           const rawDataFinal = response.data.result.results; // an array
           setSearchResults(rawDataFinal);
-          setSearchResultsTEST(rawData);
+          // setSearchResultsTEST(rawData);
           rawData.matching_results
             ? setNoResults("")
             : setNoResults("no results buddy");
