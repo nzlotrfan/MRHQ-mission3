@@ -7,7 +7,7 @@
 # CMD ["npm", "run", "start"]
 
 FROM node:lts AS ui-build
-WORKDIR /usr/src/app
+WORKDIR /src/app
 COPY car-search-app/ ./car-search-app/
 RUN cd car-search-app && npm install && npm run build
 
@@ -16,8 +16,9 @@ WORKDIR /root/
 COPY --from=ui-build /usr/src/app/car-search-app/build ./car-search-app/build
 COPY car-search-app-backend/ ./car-search-app-backend/
 RUN cd car-search-app-backend && npm install
-COPY car-search-app-backend/server.js ./car-search-app-backend/
 
 EXPOSE 4000
 
-CMD ["node", "./car-search-app-backend/server.js"]
+CMD ["npm", "run", "start"]
+
+# , "./car-search-app-backend/server.js"
