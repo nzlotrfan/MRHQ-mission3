@@ -34,7 +34,7 @@ on:
 env:
   AWS_REGION: ap-southeast-2 # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: reubenrepo # set this to your Amazon ECR repository name
-  ECS_SERVICE: CarSearchAppService # set this to your Amazon ECS service name
+  ECS_SERVICE: CarSearchAppContainer-service # set this to your Amazon ECS service name
   ECS_CLUSTER: CarSearchAppCluster # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION:
     ECS_TASK_DEFINITION.json # set this to the path to your Amazon ECS task definition
