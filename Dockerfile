@@ -33,8 +33,8 @@ EXPOSE 3000
 
 FROM node:lts AS server-build
 WORKDIR /app/backend/
-COPY /car-search-app/package.json ./
-COPY /car-search-app/package-lock.json ./
+COPY /car-search-app-backend/package.json ./
+COPY /car-search-app-backend/package-lock.json ./
 COPY car-search-app-backend/ ./
 RUN npm install
 
