@@ -1,11 +1,13 @@
-FROM node:lts
-WORKDIR /app
-COPY /car-search-app/package.json ./
-COPY /car-search-app/package-lock.json ./
-COPY /car-search-app/ ./
-RUN npm i
-CMD ["npm", "run", "start"]
+# # I KNOW THIS WORKS FOR FRONTEND
+# FROM node:lts
+# WORKDIR /app
+# COPY /car-search-app/package.json ./
+# COPY /car-search-app/package-lock.json ./
+# COPY /car-search-app/ ./
+# RUN npm i
+# CMD ["npm", "run", "start"]
 
+## The following doesn't work yet, but keeping it as a reference
 # FROM node:lts AS ui-build
 # WORKDIR /src/app
 # COPY car-search-app/ ./car-search-app/
@@ -20,5 +22,21 @@ CMD ["npm", "run", "start"]
 # EXPOSE 4000
 
 # CMD ["npm", "run", "start"]
+
+FROM node:lts AS ui-build
+WORKDIR /src/app
+COPY /car-search-app/package.json ./
+COPY /car-search-app/package-lock.json ./
+COPY car-search-app/ ./
+RUN npm install 
+
+FROM node:lts AS server-build
+WORKDIR /backend/
+COPY car-search-app-backend/ ./
+RUN npm install
+
+EXPOSE 4000
+
+CMD ["npm", "run", "start"]
 
 # , "./car-search-app-backend/server.js"
