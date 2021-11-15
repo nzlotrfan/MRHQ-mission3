@@ -32,14 +32,13 @@ RUN npm install
 EXPOSE 3000
 
 FROM node:lts AS server-build
-WORKDIR /app/backend/
+WORKDIR /app/
 COPY /car-search-app-backend/package.json ./
 COPY /car-search-app-backend/package-lock.json ./
 COPY car-search-app-backend/ ./
 RUN npm install
-
 EXPOSE 4000
 
-CMD ["npm", "run", "start", "node",'server.js']
+CMD ["npm", "run", "start", "node", "server.js"]
 
 # , "./car-search-app-backend/server.js"
