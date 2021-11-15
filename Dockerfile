@@ -18,6 +18,6 @@ COPY car-search-app-backend/package*.json ./car-search-app-backend/
 RUN cd car-search-app-backend && npm install
 COPY car-search-app-backend/server.js ./car-search-app-backend/
 
-EXPOSE 3080
+EXPOSE 4000
 
 CMD ["node", "./car-search-app-backend/server.js"]
