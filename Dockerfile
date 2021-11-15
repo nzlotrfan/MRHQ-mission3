@@ -13,7 +13,7 @@ RUN cd car-search-app && npm install && npm run build
 
 FROM node:lts AS server-build
 WORKDIR /root/
-COPY --from=ui-build /usr/src/app/car-search-app/build ./car-search-app/build
+COPY --from=ui-build /src/app/car-search-app/build ./car-search-app/build
 COPY car-search-app-backend/ ./car-search-app-backend/
 RUN cd car-search-app-backend && npm install
 
