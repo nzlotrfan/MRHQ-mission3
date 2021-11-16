@@ -2,7 +2,7 @@
 // FIRST ATTEMPT
 const makeStringOnly = (string) => {
   let formattedString = string.replace(/[!,?,-,;,%]/g, " ");
-  return formattedString;
+  return formattedString; 
 };
 
 makeStringOnly("hello%world");
