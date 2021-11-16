@@ -2,7 +2,7 @@ name: SonarCloud Scan
 
 on:
   workflow_run:
-    workflows: ["SonarCloud Scan"]
+    workflows: ["Jest Unit Testing"]
     types:
       - completed
 

@@ -28,7 +28,7 @@ name: Deploy to Amazon ECS
 
 on:
   workflow_run:
-    workflows: ["Node.js CI"]
+    workflows: ["SonarCloud Scan"]
     types:
       - completed
 
