@@ -18,7 +18,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 # on:
-#   # Trigger analysis when pushing in master or pull requests, and when creating
+#   # Trigger analysis when pushing in master or  pull requests, and when creating
 #   # a pull request.
 #   push:
 #     branches:
