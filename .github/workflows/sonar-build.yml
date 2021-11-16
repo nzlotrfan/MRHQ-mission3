@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Clone Repo
         uses: actions/checkout@v2
-      - name: Analyse with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v1.3
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v1.6
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
