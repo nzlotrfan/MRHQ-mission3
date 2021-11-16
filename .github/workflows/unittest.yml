@@ -2,14 +2,15 @@ name: Node.js CI
 
 on:
   workflow_run:
-    workflows: ["Sonar Build"]
+    workflows: ["SonarCloud Scan"]
     types:
       - completed
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on:
+      ubuntu-latest
+      # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     defaults:
       run:
         working-directory: ./car-search-app

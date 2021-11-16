@@ -21,7 +21,7 @@ test("Converts any odd characters to spaces", () => {
 });
 
 test("Converts any odd characters to spaces", () => {
-  expect(makeStringNeat("hello world?")).toBe("hello world");
+  expect(makeStringNeat("hello world?")).toBe("hello world EDIT ME BACK");
 });
 
 test("Converts any odd characters to spaces", () => {

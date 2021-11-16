@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-name: Sonar Build
+name: SonarCloud Scan
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
