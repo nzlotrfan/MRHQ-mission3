@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import turners from "../assets/Turners-Logo.gif";
+
 function Search() {
   const [searchString, setSearchString] = useState("");
   const [displayedFormattedSearchString, setDisplayedFormattedSearchString] =
@@ -34,7 +35,7 @@ function Search() {
 
     // The Axios module which posts the users string to the backend before receiving a response
     axios
-      .get("search", {
+      .get("https://stormy-plateau-63535.herokuapp.com/search", {
         params: {
           searchString: formattedString,
         },
